@@ -1,4 +1,4 @@
-// Component/FilmItem.js
+// Component/RecipeItem.js
 
 import React from "react";
 //Native components
@@ -20,25 +20,26 @@ class RecipeItem extends React.Component{
     }
   }
   render(){
-    const { film, displayDetailForFilm } = this.props;
+    const { recipe, displayDetailForRecipe } = this.props;
     return(
       <TouchableOpacity style={styles.container}
-      onPress={() => displayDetailForFilm(film.id)}>
-        <Image style={styles.poster} source={{uri: getImageFromApi(film.poster_path)}} />
+      onPress={() => displayDetailForRecipe(recipe.id)}>
+        <Image style={styles.poster} source={recipe.image_path} />
         <View style={styles.properties}>
 
           <View style={styles.properties_header}>
             {this._displayFavorite()}        
-            <Text style = {styles.title_text}>{film.title}</Text>
-            <Text style = {styles.rating_text}>{film.vote_average}</Text>
+            <Text style = {styles.title_text}>{recipe.name}</Text>
           </View>
 
           <View style={styles.properties_content}>          
-            <Text style={styles.description_text} numberOfLines={6}>{film.overview}</Text>
+            <Text style={styles.description_text} numberOfLines={3}>{recipe.overview}</Text>
           </View>
 
           <View style={styles.properties_footer}>          
-            <Text style={styles.release_date}>Sorti le {film.release_date}</Text>
+            <Text style={styles.release_date}>Temps de préparation : {recipe.prep_time}</Text>
+            <Text style={styles.release_date}>Temps de cuisson : {recipe.cook_time}</Text>
+
           </View>
 
         </View>
@@ -50,11 +51,12 @@ class RecipeItem extends React.Component{
 const styles = StyleSheet.create({
   container:{
     flexDirection:"row",
-    height:190
+    height:130
   },
 
   poster:{
     width:120,
+    height:130,
     margin:5,
   },
   properties:{
@@ -67,19 +69,14 @@ const styles = StyleSheet.create({
     flexDirection:"row",
   },
   title_text:{
-    flex:1,
+    flex:4,
     flexWrap:"wrap",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
     color:"black"
   },
-  rating_text:{
-    fontWeight: 'bold',
-    fontSize: 26,
-    color: '#666666',
-  },
   properties_content:{
-    flex:7,
+    flex:4,
   },
   description_text:{
     fontStyle: 'italic',
@@ -87,15 +84,15 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   properties_footer:{
-    flexDirection:"row-reverse",
     flex:1,
+    marginBottom:10
   },
   release_date:{
     fontSize: 14
   },
   favorite_image:{
-    width:40,
-    height:40
+    width:30,
+    height:30
   }
 })
 

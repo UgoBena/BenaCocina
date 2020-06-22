@@ -10,35 +10,27 @@ class RecipeList extends React.Component{
 
     constructor(props) {
         super(props)
-        this.state = {
-          films: []
-        }
-        this._displayDetailForFilm = this._displayDetailForFilm.bind(this)
+        
+        this._displayDetailForRecipe= this._displayDetailForRecipe.bind(this)
       }
 
-      _displayDetailForFilm(idFilm){
+      _displayDetailForRecipe(id){
         // On a récupéré les informations de la navigation, on peut afficher le détail du film
-        this.props.navigation.navigate('RecipeDetail', {idFilm: idFilm})
+        this.props.navigation.navigate('RecipeDetail', {idRecipe: id})
       }
 
     render() {
         return (
             <FlatList
             style={styles.list}
-            data={this.props.films}
-            extraData={this.props.favoritesFilm}
+            data={this.props.recipes}
+            extraData={this.props.favorites}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({item}) => <RecipeItem 
-                        film={item} 
-                        isFavorite={this.props.favoritesFilm.findIndex((film)=> film.id === item.id) !==-1} 
-                        displayDetailForFilm={this._displayDetailForFilm}/>
+                        recipe={item} 
+                        isFavorite={this.props.favorites.findIndex((film)=> film.id === item.id) !==-1} 
+                        displayDetailForRecipe={this._displayDetailForRecipe}/>
                         }
-            onEndReachedThreshold={0.5}
-            onEndReached={() => {
-              if (this.props.page<this.props.totalPages && !this.props.favoritesList){ 
-                this.props.loadFilms() 
-              }
-            }}
             />
         )
     }
@@ -53,7 +45,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    favoritesFilm: state.favoritesFilm
+    favorites: state.favorites
   }
 }
 

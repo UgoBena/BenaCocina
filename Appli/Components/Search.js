@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 //global styles
 import gStyles from "../Styles";
 //Native components
-import {ActivityIndicator, StyleSheet, View, TextInput, Button, FlatList, Text} from "react-native";
+import {ActivityIndicator,TouchableOpacity, Image,StyleSheet, View, TextInput, Button, FlatList, Text} from "react-native";
 //Custom components
 import RecipeItem from "./RecipeItem";
 import RecipeList from "./RecipeList";
@@ -14,6 +14,7 @@ import RecipeList from "./RecipeList";
 //API
 import { getFilmsFromApiWithSearchedText } from "../API/TMDBApi";
 
+import recipes from "../Helpers/recipeData";
 
 
 class Search extends React.Component{
@@ -21,46 +22,29 @@ class Search extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      films:[],
+      recipes:[],
       isLoading:false,
       hideMovieList:false,
       category:this.props.navigation.state.params.category
     }
     this.searchedText = "";
-    this.page = 0;
-    this.totalPages = 0;
-
-    this._loadFilms = this._loadFilms.bind(this)
   }
 
-  _searchFilm(){
-    this.page = 0
-    this.totalPages = 0
+  componentDidMount(){
+    this._searchRecipes(this.state.category);
+  }
+
+  _searchRecipes(category){
+    this.setState({isLoading:true});
     this.setState({
-      films: [],
-    }, () => {this._loadFilms()})
+      recipes:recipes.filter((item) => category.name=== "all" || item.type === category.name),
+      isLoading:false
+    })
   }
 
 
   _searchTextInputChanged(text) {
     this.searchedText = text; // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
-  }
-
-
-  _loadFilms(){
-    if (this.searchedText.length > 0) {
-      this.setState({isLoading:true});
-
-      getFilmsFromApiWithSearchedText(this.searchedText,this.page + 1).then( (data) => {
-        this.page = data.page;
-        this.totalPages = data.total_pages;
-        this.setState({
-            films: [ ...this.state.films, ...data.results ],
-            isLoading:false,
-        })
-      })
-      .catch( (err) => console.log(err));
-    }
   }
 
 
@@ -74,32 +58,30 @@ class Search extends React.Component{
     }
   }
 
-  _displayHeader(){
-    return(
-      <View style={styles.header}>
-          <Text style={styles.header_text}>{this.state.category}</Text>
-      </View>
-    )
-  }
-
   render() {
     return (
       <View style={gStyles.main_container}>
-        {this._displayHeader()}
-        <TextInput 
-        placeholder={"Rechercher dans " + this.state.category}
-        style={styles.textinput}
-        onChangeText={ (text) => this._searchTextInputChanged(text)}
-        onSubmitEditing={() => this._searchFilm()}
-        />
-        <Button title="Rechercher" onPress={() => this._searchFilm() }/>
+        <View style={styles.header}>
+          <Text style={styles.header_text}>{this.state.category.title}</Text>
+        </View>
+        <View style={styles.search_bar}>
+          <TextInput 
+          placeholder="Entrer le nom d'une recette à rechercher"
+          style={styles.textinput}
+          onChangeText={ (text) => this._searchTextInputChanged(text)}
+          onSubmitEditing={() => this._searchRecipes()}
+          />
+          <TouchableOpacity style={styles.search_button} onPress={() => this._searchRecipes()}>
+            <Image
+              source={require('../Images/ic_search.png')}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+        </View>
         
         <RecipeList
-        films = {this.state.films}
+        recipes = {this.state.recipes}
         navigation = {this.props.navigation}
-        loadFilms = {this._loadFilms}
-        page={this.page}
-        totalPages={this.totalPages}
         favoritesList={false}
         />
 
@@ -123,14 +105,29 @@ const styles = StyleSheet.create({
     fontWeight:"bold",
     fontSize:26
   },
-  textinput: {
+  search_bar:{
+    flexDirection:"row",
+    backgroundColor: '#ffffff',
+    borderRadius:20,
     marginLeft: 5,
-    marginRight: 5,
+    marginRight:5,
     marginBottom:10,
+
+  },
+  icon:{
+    height:30,
+    width:30,
+  },
+  textinput: {
+    flex:10,
     height: 50,
-    borderColor: '#000000',
-    borderWidth: 1,
     paddingLeft: 5
+  },
+  search_button:{
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center',
+    marginRight:10
   },
   loading_container: {
     position: 'absolute',
@@ -146,7 +143,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    favoritesFilm: state.favoritesFilm
+    favorites: state.favorites
   }
 }
 

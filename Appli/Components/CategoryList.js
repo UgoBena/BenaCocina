@@ -14,19 +14,23 @@ class CategoryList extends React.Component {
     this.state={
       categories:[
         {
-          name:"Toutes les recettes",
+          title:"Toutes les recettes",
+          name:"all",
           image:require('../Images/img_all.jpg')
         },
         {
-          name:"Entrées/Tapas",
+          title:"Entrées/Tapas",
+          name:"starter",
           image:require('../Images/img_starters.jpg')
         },
         {
-          name:"Plats",
+          title:"Plats",
+          name:"plat",
           image:require('../Images/img_maindish.jpg')
         },
         {
-          name:"Desserts",
+          title:"Desserts",
+          name:"dessert",
           image:require('../Images/img_dessert.jpg')
         },
       ]
@@ -36,12 +40,12 @@ class CategoryList extends React.Component {
   _displayCategory(category){
     console.log(category);
     return(
-      <TouchableOpacity style={styles.category} onPress={ () => this.props.navigation.navigate("Search",{category:category.name})}>
+      <TouchableOpacity style={styles.category} onPress={ () => this.props.navigation.navigate("Search",{category:category})}>
           <Image 
             style={styles.image} 
             source={category.image}
           />
-          <Text style={styles.text}>{category.name}</Text>
+          <Text style={styles.text}>{category.title}</Text>
       </TouchableOpacity>
     )
   }

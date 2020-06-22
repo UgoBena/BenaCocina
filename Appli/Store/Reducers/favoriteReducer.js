@@ -1,23 +1,24 @@
 // /Store/Reducers/favoriteReducer.js
 
-const initialState = {favoritesFilm: []};
+const initialState = {favorites: []};
 
 function toggleFavorite(state = initialState,action){
   let nextState;
   switch(action.type){
     case "TOGGLE_FAVORITE":
-      const favoriteFilmIndex = state.favoritesFilm.findIndex(item => item.id === action.value.id);
-      if (favoriteFilmIndex !== -1){
+      const favoriteIndex = state.favorites.findIndex(item => item.id === action.value.id);
+      if (favoriteIndex !== -1){
         //Le film est déjà dans les favoris, on le supprime
         nextState = {...state,
-          favoritesFilm: state.favoritesFilm.filter((item,index) => index!==favoriteFilmIndex)
+          favorites: state.favorites.filter((item,index) => index!==favoriteIndex)
         }
       }
 
       else{
         //Le film n'est pas dans les favoris, on l'ajoute
+        console.log(action.value);
         nextState = {...state,
-          favoritesFilm: [...state.favoritesFilm,action.value]
+          favorites: [...state.favorites,action.value]
         }
       }
       return nextState || state

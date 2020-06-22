@@ -13,10 +13,11 @@ class Favorites extends React.Component {
 
 
   render() {
+
     return (
       <View style={gStyles.main_container}>
         <RecipeList
-        films = {this.props.favoritesFilm}
+        recipes = {this.props.favorites}
         navigation = {this.props.navigation}
         favoritesList={true}
         />
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    favoritesFilm: state.favoritesFilm
+    favorites: state.favorites
   }
 }
 

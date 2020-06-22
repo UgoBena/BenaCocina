@@ -17,34 +17,39 @@ const SearchStackNavigator = createStackNavigator({
   Categories:{
     screen:CategoryList,
     navigationOptions: {
-      title: 'Categories'
+      title: 'Categories',
     }
   },
   Search: {
     screen: Search,
     navigationOptions: {
-      title:''
+      title:'',
+      headerTintColor: '#000000'
     }
   },
   RecipeDetail: {
     screen: RecipeDetail,
     navigationOptions: {
-      title: 'Details'
+      title: 'Details',
+      headerTintColor: '#000000'
     }
   }
-})
+},
+)
 
 const FavoritesStackNavigator = createStackNavigator({
   Favorite: {
     screen: Favorites,
     navigationOptions: {
-      title: 'Favoris'
+      title: 'Favoris',
+      headerTintColor: '#000000'
     }
   },
   RecipeDetail: {
     screen: RecipeDetail,
     navigationOptions: {
-      title: 'Details'
+      title: 'Details',
+      headerTintColor: '#000000'
     }
   }
 })

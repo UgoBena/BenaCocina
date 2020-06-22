@@ -7,7 +7,7 @@ import gStyles from "../Styles";
 //Native components
 import {ActivityIndicator, StyleSheet, View, ScrollView, Image, Text, Button,TouchableOpacity} from "react-native";
 //Custom components
-
+import recipeList from '../Helpers/recipeData';
 
 //API
 import { getFilmDetailFromApi,getImageFromApi } from "../API/TMDBApi";
@@ -18,88 +18,72 @@ class RecipeDetail extends React.Component{
   constructor(props) {
     super(props);
     this.state={
-      film: undefined,
+      recipe: undefined,
       isLoading: false,
     }
   }
 
   componentDidMount(){
     //check if component is in favorites list
-    const favoriteFilmIndex = this.props.favoritesFilm.findIndex(item => item.id === this.props.navigation.state.params.idFilm)
+    const favoriteIndex = this.props.favorites.findIndex(item => item.id === this.props.navigation.state.params.idRecipe)
     //if it is, simply grab its data from redux store
-    if (favoriteFilmIndex!==-1){
-      this.setState({film:this.props.favoritesFilm[favoriteFilmIndex]})
+    if (favoriteIndex!==-1){
+      this.setState({recipe:this.props.favorites[favoriteIndex]})
     }
     //else, make a request to the API
     else{
-      this.setState({isLoading:true});
-      getFilmDetailFromApi(this.props.navigation.getParam("idFilm")).then( (data) => {
-      this.setState({
-        film:data,
-        isLoading:false,
-      })
-    })
+      this.setState({recipe:recipeList[this.props.navigation.state.params.idRecipe]})
     }
     
   }
 
   _toggleFavorite() {
-    console.log("favorite toggle");
-      const action = { type: "TOGGLE_FAVORITE", value: this.state.film };
+      const action = { type: "TOGGLE_FAVORITE", value: this.state.recipe };
       this.props.dispatch(action);
   }
 
-  _displayFilm() {
-    var {film} = this.state;
-    if (film != undefined) {
+  _displayRecipe() {
+    var {recipe} = this.state;
+    if (recipe != undefined) {
       return (
         <ScrollView style={styles.scrollview_container}>
           {/* Top Image*/}
           <View style={styles.poster_container}>
-            <Image style={styles.poster} source={{uri: getImageFromApi(film.backdrop_path)}} />
+            <Image style={styles.poster} source={recipe.image_path} />
           </View>
 
           {/* Film title*/}
           <View style={styles.title_container}>
-            <Text style={styles.title_text}>{film.title}</Text>
+            <Text style={styles.title_text}>{recipe.name}</Text>
             <TouchableOpacity style={styles.favorite_container} onPress={() => this._toggleFavorite()}>
               {this._displayFavoriteImage()}
             </TouchableOpacity>          
           </View>
 
-          {/* Film description*/}
+          {/* Recipe description*/}
           <View style={styles.description_container}>
-            <Text style={styles.description_text}>{film.overview}</Text>
+            <Text style={styles.description_text}>{recipe.overview}</Text>
           </View>
           {/* Additional information*/}
           <View style={styles.info_container}>
-            <Text style={styles.info_text}>Sorti le : {this._formatDate(film.release_date)}</Text>
-            <Text style={styles.info_text}>Note : {film.vote_average} / 10</Text>
-            <Text style={styles.info_text}>Nombre de votes : {film.vote_count}</Text>
-            <Text style={styles.info_text}>Budget : {film.budget} $</Text>
-            <Text style={styles.info_text}>Genre(s) : {film.genres.map(function(genre){
-              return genre.name;
-            }).join(" / ")}</Text>
-            <Text style={styles.info_text}>Companie(s) : {film.production_companies.map(function(company){
-              return company.name;
-            }).join(" / ")}</Text>
-
+            <Text style={styles.info_text}>Temps de préparation : {recipe.prep_time}</Text>
+            <Text style={styles.info_text}>Temps de cuisson : {recipe.cook_time}</Text>
+          </View>
+          <View style={styles.ingredients_container}>
+            <Text style={styles.title_text}>Ingrédients</Text>
+          </View>
+          <View style={styles.steps_container}>
+            <Text style={styles.title_text}>Etapes</Text>
           </View>
         </ScrollView>
       )
     }
   }
 
-  _formatDate(date){
-    var arr = date.split("-");
-    return arr[2] + " / " + arr[1] + " / " + arr[0] 
-  }
-
   _displayFavoriteImage(){
     var sourceImage = require("../Images/ic_not_favorite.png");
-    if (this.props.favoritesFilm.findIndex(item => item.id === this.state.film.id) !== -1) {
+    if (this.props.favorites.findIndex(item => item.id === this.state.recipe.id) !== -1) {
       // Film dans nos favoris
-      console.log("favoriteFound");
       sourceImage = require('../Images/ic_favorite.png');
     }
     return (
@@ -124,7 +108,7 @@ class RecipeDetail extends React.Component{
     return (
       <View style={gStyles.main_container}>
         {this._displayLoading()}
-        {this._displayFilm()}
+        {this._displayRecipe()}
       </View>
     )
   }
@@ -149,7 +133,8 @@ const styles = StyleSheet.create({
     height:180
   },
   poster:{
-    flex:1
+    flex:1,
+    height:180
   },
   title_container:{
     alignItems:"center",
@@ -176,13 +161,17 @@ const styles = StyleSheet.create({
     color:"gray",
   },
   info_container:{
+    marginBottom:20
+  },
+  ingredients_container:{
+    marginBottom:20
   },
   
 })
 
 const mapStateToProps = (state) => {
   return {
-    favoritesFilm: state.favoritesFilm
+    favorites: state.favorites
   }
 }
 
