@@ -1,0 +1,380 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"S",
+				"Shift"
+			],
+			[
+				"added",
+				"addedItems"
+			],
+			[
+				"max-",
+				"max-height\tproperty"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"path_to_",
+				"path_to_input"
+			],
+			[
+				"weig",
+				"weight"
+			],
+			[
+				"pred",
+				"predictions"
+			],
+			[
+				"model",
+				"model_dir"
+			],
+			[
+				"docs",
+				"docs_representation"
+			],
+			[
+				"em",
+				"embeddings_df"
+			],
+			[
+				"emb",
+				"embeddings_array"
+			],
+			[
+				"embe",
+				"embeddings_array"
+			],
+			[
+				"embeddigs",
+				"embeddings_df"
+			],
+			[
+				"embed",
+				"embeddings_df"
+			],
+			[
+				"embeddin",
+				"embedding_matrix"
+			],
+			[
+				"Data",
+				"DataFrame"
+			],
+			[
+				"user",
+				"userid"
+			],
+			[
+				"use",
+				"userid"
+			],
+			[
+				"X_sb",
+				"X_sb"
+			],
+			[
+				"label",
+				"label_df"
+			],
+			[
+				"embeddings",
+				"embeddings_ssd"
+			],
+			[
+				"get",
+				"get_weights"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Header/Header.js",
+		"/C/Users/ugobe/Downloads/AdobePremierePro/Adobe Premiere Pro CC 2019 v13.0 by KickAssCracks.com/INSTRUCTIONS",
+		"/C/Users/ugobe/Downloads/AdobePremierePro/Adobe Premiere Pro CC 2019 v13.0 by KickAssCracks.com/Crack/Patch/Readme.txt",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Magasin/Magasin.css",
+		"/C/Users/ugobe/Downloads/Code.rmd",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/serviceWorker.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Home.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Login/Login.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/App.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Magasin/Magasin.js",
+		"/C/Users/ugobe/Documents/My Games/Dawn of War II - Retribution/Settings/keydefaults.lua",
+		"/C/Users/ugobe/Documents/My Games/Dawn of War II - Retribution/Settings/_keydefaults.lua",
+		"/C/Users/ugobe/Downloads/[ OxTorrent.com ] Adobe Photoshop CC 2019 v20.0.6.27696 Pre-activated/Read me.txt",
+		"/C/Users/ugobe/Downloads/[ OxTorrent.com ] Adobe Photoshop CC 2019 v20.0.6.27696 Pre-activated/INFO A LIRE !!!.txt",
+		"/C/Users/ugobe/Unity/UnityGit/.git/COMMIT_EDITMSG",
+		"/C/Users/ugobe/Sites/www.conceptverre.dev.cc/wp-config.php",
+		"/C/Users/ugobe/Sites/testcopy.dev.cc/wp-config.php",
+		"/C/Users/ugobe/Unity/UnityGit/.git/MERGE_MSG",
+		"/C/Users/ugobe/wp-config.php",
+		"/C/Users/ugobe/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/ugobe/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/ugobe/AppData/Local/Temp/ConnectTheWires_v1.0.ino",
+		"/C/Users/ugobe/Downloads/conceptverre-db/dup-installer/index.php",
+		"/C/Users/ugobe/Sites/testcopy.dev.cc/installer-backup.php",
+		"/C/Users/ugobe/Sites/testcopy.dev.cc/wp-includes/I10n.php",
+		"/C/Users/ugobe/Sites/testcopy.dev.cc/wp-includes/l10n.php",
+		"/C/Users/ugobe/Downloads/conceptverre-db/wp-config.php",
+		"/C/Users/ugobe/Downloads/conceptverre-db/installer-backup.php",
+		"/C/Users/ugobe/Sites/www.conceptverre.dev.cc/.htaccess.txt",
+		"/C/Users/ugobe/Downloads/Enigme_MANOMETRE_v2.0.ino",
+		"/C/Users/ugobe/AppData/Local/Temp/Temp1_2D_IsoTilemaps_DemoProject.zip/2D_IsoTilemaps-master/README.md",
+		"/C/Users/ugobe/AppData/Local/Temp/Temp1_blue-advanced.zip/readme.txt",
+		"/C/Users/ugobe/Unity/Builds/InterstellarisMulti/Build/InterstellarisMulti.json",
+		"/C/Users/ugobe/Unity/UnityGit/README.md",
+		"/C/Users/ugobe/Desktop/poppy/.gitignore",
+		"/C/Users/ugobe/Desktop/poppy/.git/COMMIT_EDITMSG",
+		"/C/Users/ugobe/Desktop/poppy/config.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Cart/Cart.css",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Header/Header.css",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Cart/Cart.js",
+		"/C/Users/ugobe/Desktop/poppy/backend/.gitignore",
+		"/C/Users/ugobe/Desktop/poppy/frontend/.gitignore",
+		"/C/Users/ugobe/OneDrive/Guild Wars 2/THIRDPARTYSOFTWAREREADME.txt",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/index.js",
+		"/C/Users/ugobe/AppData/Local/Temp/Temp2_IcoMoon-Free-master.zip/IcoMoon-Free-master/Font/demo-files/demo.css",
+		"/C/Users/ugobe/AppData/Local/Temp/Temp1_IcoMoon-Free-master.zip/IcoMoon-Free-master/Font/demo-files/demo.css",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Actions/cartActions.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/reducers/cartReducer.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Actions/action-type.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Historique/Historique.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Actions/cart-actions.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/package-lock.json",
+		"/C/Users/ugobe/Desktop/poppy/backend/server.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Actions/apiClient.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/App.css",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Profile/Profile.js",
+		"/C/Users/ugobe/Desktop/poppy/backend/components/auth.js",
+		"/C/Users/ugobe/Desktop/poppy/backend/routes.js",
+		"/C/Users/ugobe/Desktop/poppy/.git/MERGE_MSG",
+		"/C/Users/ugobe/Desktop/poppy/backend/models/User.js",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Register/Register.js",
+		"/C/Users/ugobe/Desktop/poppy/package.json",
+		"/C/Users/ugobe/Desktop/poppy/frontend/package.json",
+		"/C/Users/ugobe/Desktop/poppy/backend/package.json",
+		"/C/Users/ugobe/Desktop/poppy/frontend/src/Components/Login/Login.css",
+		"/C/Users/ugobe/Desktop/poppy/backend/passport-config.js",
+		"/C/Users/ugobe/Desktop/poppy/package-lock.json",
+		"/C/Users/ugobe/SF_Project/exemple2.txt",
+		"/C/Users/ugobe/SF_Project/exemple.txt",
+		"/C/Users/ugobe/SF_Project/backend/run.py",
+		"/C/Users/ugobe/SF_Project/backend/application.py",
+		"/C/Users/ugobe/SF_Project/frontend/package.json",
+		"/C/Users/ugobe/SF_Project/backend/controllers/pred.py",
+		"/C/Users/ugobe/SF_Project/frontend/src/Actions/apiClient.js",
+		"/C/Users/ugobe/Desktop/hashcode/hashcode/script_1.py",
+		"/C/Users/ugobe/Desktop/hashcode/hashcode/__init__.py",
+		"/C/Users/ugobe/Desktop/hashcode/run.py",
+		"/C/Users/ugobe/Desktop/hashcode/hashcode/utils.py",
+		"/C/Users/ugobe/Desktop/hashcode/input/c_incunabula.txt",
+		"/C/Users/ugobe/Desktop/hashcode/input/f_libraries_of_the_world.txt",
+		"/C/Users/ugobe/Desktop/hashcode/input/a_example.txt",
+		"/C/Users/ugobe/Downloads/a_example.txt",
+		"/C/Users/ugobe/Desktop/hashcode/hashcode/script_0.py",
+		"/C/Users/ugobe/Desktop/hashcode/.git/COMMIT_EDITMSG",
+		"/C/Users/ugobe/Desktop/hashcode/README.md",
+		"/C/Users/ugobe/Desktop/hashcode/.gitignore",
+		"/C/Users/ugobe/Desktop/SF_Project-master/.env",
+		"/C/Users/ugobe/Downloads/customkeys.txt",
+		"/C/Users/ugobe/Documents/Warcraft III/CustomKeyBindings/CustomKeys.txt",
+		"/C/Users/ugobe/Desktop/ProjetSF/frontend/src/Components/Prediction/Prediction.css",
+		"/C/Users/ugobe/Desktop/ProjetSF/frontend/src/App.js",
+		"/C/Users/ugobe/Desktop/ProjetSF/frontend/src/Components/Patients/Patients.css",
+		"/C/Users/ugobe/Desktop/ProjetSF/frontend/src/Components/Header/Header.css",
+		"/C/Users/ugobe/Desktop/ProjetSF/frontend/src/App.css",
+		"/C/Users/ugobe/Desktop/ProjetSF/frontend/src/Components/Login/Login.css",
+		"/C/Users/ugobe/Desktop/ProjetSF/frontend/src/Components/Home.js",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_78/.env",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_79/new_model_new_db.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_80/db_save",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_73/routes.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_77/apiClient.js",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_61/init.sql",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_72/new_model_new_db.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_71/.env",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_65/new_model_new_db.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_76/test_pred.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_75/test.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_74/test.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_70/pred.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_66/.env",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_69/.env",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_68/.env",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_67/.env",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_63/new_model_new_db.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_64/transfer_script.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_7_62/transfer_script.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_60/rm_dockers.sh",
+		"/C/Users/ugobe/Desktop/igr/training/trainnewcohort.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_59/.env",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_58/.env",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_57/pred.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_47/scores_on_df_all_pool.txt",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_46/scores_on_df_all_pool.txt",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_45/scores_on_new_df.txt",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_3_32/trainnewcohort.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_28/docrep.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_27/docrep.py",
+		"/C/Users/ugobe/Documents/MobaXterm/slash/RemoteFiles/67196_2_6/docrep.py"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 290.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "App.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
