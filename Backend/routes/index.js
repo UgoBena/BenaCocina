@@ -31,7 +31,6 @@ const test = new Recipe({
   ],
   comments:["vraiment on se régale", "NRV"]
 });
-test.save();
 
 /* GET ALL recipes. */
 router.get('/getRecipes', function(req, res, next) {
