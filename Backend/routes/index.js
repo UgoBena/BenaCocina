@@ -60,7 +60,7 @@ router.post('/getRecipesBycategories', function(req, res, next) {
 
 /* Get specific recipe by name (unique) */
 router.get('/getRecipeByName', function(req, res, next) {
-  const filter = {dish_type:req.query.name};
+  const filter = {name:req.query.name};
   Recipe.find(filter,function(err,recipe){
     if (err) res.send(err);
     res.send(recipe);
