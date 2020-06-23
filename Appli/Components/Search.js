@@ -37,9 +37,10 @@ class Search extends React.Component{
   _getRecipes(category,isDishType){
     this.setState({isLoading:true});
     if (isDishType){
-      if (category === "all") {
+      if (category.name === "all") {
         getRecipesFromAPI().then(res => {
-          this.setStates({
+          console.log(res);
+          this.setState({
             recipes:res,
             isLoading:false
           })
@@ -47,8 +48,8 @@ class Search extends React.Component{
       }
 
       else {
-        getRecipesFromAPIByDishType(category).then(res => {
-          this.setStates({
+        getRecipesFromAPIByDishType(category.name).then(res => {
+          this.setState({
             recipes:res,
             isLoading:false
           })

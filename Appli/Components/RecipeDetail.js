@@ -30,8 +30,8 @@ class RecipeDetail extends React.Component{
       this.setState({recipe:this.props.favorites[favoriteIndex]})
     }
     //else, make a request to the API
-    this.setState({isLoading:true});
     else{
+      this.setState({isLoading:true});
       getRecipeDetailFromApi(this.props.navigation.state.params.recipeName).then(res => {
               this.setState({recipe:res,isLoading:false})
       }).catch(err => console.log(err));
