@@ -78,6 +78,7 @@ router.post('/addRecipe',function(req,res,next){
     overview: data.overview,
     prep_time: data.prep_time,
     cook_time:data.cook_time,
+    nb_persons:data.nb_persons,
     dish_type:data.dish_type,
     categories:data.categories,
     ingredients:data.ingredients,

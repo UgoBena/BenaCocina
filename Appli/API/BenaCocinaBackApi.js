@@ -25,7 +25,7 @@ export function getRecipeDetailFromApi (name) {
 }
 
 //Ajout d'une recette
-export function AddRecipe (name,overview,prep_time,cook_time,dish_type,categories,ingredients,steps,comments) {
+export function AddRecipe (name,overview,prep_time,cook_time,nb_persons,dish_type,categories,ingredients,steps,comments) {
   const url = 'https://bena-cocina-back.herokuapp.com/addRecipe';
   (async () => {
   const rawResponse = await fetch(url, {
@@ -34,7 +34,7 @@ export function AddRecipe (name,overview,prep_time,cook_time,dish_type,categorie
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({name: name, overview: overview,prep_time: prep_time, cook_time: cook_time,
+    body: JSON.stringify({name: name, overview: overview,prep_time: prep_time, cook_time: cook_time, nb_persons:nb_persons,
       dish_type: dish_type, categories: categories, ingredients: ingredients, steps: steps, comments: comments})
   });
   const content = await rawResponse.json();
