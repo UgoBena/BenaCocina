@@ -9,7 +9,10 @@ export default data = [
       prep_time:"1h",
       cook_time:"3h",
       type:"plat",
-      categories:[]
+      categories:[],
+      ingredients:[],
+      steps:[],
+      comments:[],
    },
    {
       id:1,
@@ -19,7 +22,9 @@ export default data = [
       prep_time:"30min",
       cook_time:"30min",
       type:"plat",
-      categories:[]
+      categories:[],
+      steps:[],
+      comments:[],
    }
 ]
 
