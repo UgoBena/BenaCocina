@@ -8,6 +8,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const AppError = require('./utils/appError');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -44,8 +45,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use('*', (req, res, next) => {
+    const err = new AppError(404, 'fail', 'undefined route');
+    next(err, req, res, next);
 });
 
 // error handler
