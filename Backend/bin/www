@@ -7,6 +7,31 @@
 var app = require('../app');
 var debug = require('debug')('backend:server');
 var http = require('http');
+var mongoose = require("mongoose");
+
+
+/**
+ * Database setup
+ */
+
+var options = {
+  "server" : {
+    "socketOptions" : {
+      "keepAlive" : 300000,
+      "connectTimeoutMS" : 30000
+    }
+  },
+  "replset" : {
+    "socketOptions" : {
+      "keepAlive" : 300000,
+      "connectTimeoutMS" : 30000
+    }
+  }
+}
+
+var uri = process.env.MONGODB_URI || 'mongodb://localhost/bena-cocina';
+
+mongoose.connect(uri,options);
 
 /**
  * Get port from environment and store in Express.

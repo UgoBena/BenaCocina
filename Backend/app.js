@@ -1,13 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const rateLimit = require('express-rate-limit');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const helmet = require('helmet');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
-var app = express();
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -15,6 +20,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Limit request from the same IP 
+const limiter = rateLimit({
+    max: 150,
+    windowMs: 60 * 60 * 1000,
+    message: 'Too Many Request from this IP, please try again in an hour'
+});
+app.use('/', limiter);
+
+
+// Data sanitization against Nosql query injection
+app.use(mongoSanitize());
+
+// Data sanitization against XSS(clean user input from malicious HTML code)
+app.use(xss());
+
+// Set security HTTP headers
+app.use(helmet());
+
+//Routes
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
