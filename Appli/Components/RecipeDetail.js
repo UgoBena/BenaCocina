@@ -7,10 +7,9 @@ import gStyles from "../Styles";
 //Native components
 import {ActivityIndicator, StyleSheet, View, ScrollView, Image, Text, Button,TouchableOpacity} from "react-native";
 //Custom components
-import recipeList from '../Helpers/recipeData';
 
 //API
-import { getFilmDetailFromApi,getImageFromApi } from "../API/TMDBApi";
+import { getRecipeDetailFromApi } from "../API/BenaCocinaBackApi";
 
 
 class RecipeDetail extends React.Component{
@@ -25,14 +24,17 @@ class RecipeDetail extends React.Component{
 
   componentDidMount(){
     //check if component is in favorites list
-    const favoriteIndex = this.props.favorites.findIndex(item => item.id === this.props.navigation.state.params.idRecipe)
+    const favoriteIndex = this.props.favorites.findIndex(item => item.id === this.props.navigation.state.params.recipeName)
     //if it is, simply grab its data from redux store
     if (favoriteIndex!==-1){
       this.setState({recipe:this.props.favorites[favoriteIndex]})
     }
     //else, make a request to the API
+    this.setState({isLoading:true});
     else{
-      this.setState({recipe:recipeList[this.props.navigation.state.params.idRecipe]})
+      getRecipeDetailFromApi(this.props.navigation.state.params.recipeName).then(res => {
+              this.setState({recipe:res,isLoading:false})
+      }).catch(err => console.log(err));
     }
     
   }

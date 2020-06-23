@@ -12,9 +12,8 @@ import RecipeItem from "./RecipeItem";
 import RecipeList from "./RecipeList";
 
 //API
-import { getFilmsFromApiWithSearchedText } from "../API/TMDBApi";
+import { getRecipesFromAPI,getRecipesFromAPIByDishType } from "../API/BenaCocinaBackApi";
 
-import recipes from "../Helpers/recipeData";
 
 
 class Search extends React.Component{
@@ -25,26 +24,51 @@ class Search extends React.Component{
       recipes:[],
       isLoading:false,
       hideMovieList:false,
-      category:this.props.navigation.state.params.category
+      category:this.props.navigation.state.params.category,
+      isDishType:this.props.navigation.state.params.isDishType,
     }
     this.searchedText = "";
   }
 
   componentDidMount(){
-    this._searchRecipes(this.state.category);
+    this._getRecipes(this.state.category,this.state.isDishType);
   }
 
-  _searchRecipes(category){
+  _getRecipes(category,isDishType){
     this.setState({isLoading:true});
-    this.setState({
-      recipes:recipes.filter((item) => category.name=== "all" || item.type === category.name),
-      isLoading:false
-    })
+    if (isDishType){
+      if (category === "all") {
+        getRecipesFromAPI().then(res => {
+          this.setStates({
+            recipes:res,
+            isLoading:false
+          })
+        }).catch(err => console.log(err));
+      }
+
+      else {
+        getRecipesFromAPIByDishType(category).then(res => {
+          this.setStates({
+            recipes:res,
+            isLoading:false
+          })
+        }).catch(err => console.log(err));
+
+      }
+    }
+    else{
+      console.log("category is not a dish type");
+    }
+  }
+
+  _filterRecipes(text){
+    console.log(text);
+    return
   }
 
 
   _searchTextInputChanged(text) {
-    this.searchedText = text; // Modification du texte recherché à chaque saisie de texte, sans passer par le setState comme avant
+    this.searchedText = text; 
   }
 
 
@@ -69,9 +93,9 @@ class Search extends React.Component{
           placeholder="Entrer le nom d'une recette à rechercher"
           style={styles.textinput}
           onChangeText={ (text) => this._searchTextInputChanged(text)}
-          onSubmitEditing={() => this._searchRecipes()}
+          onSubmitEditing={() => this._filterRecipes()}
           />
-          <TouchableOpacity style={styles.search_button} onPress={() => this._searchRecipes()}>
+          <TouchableOpacity style={styles.search_button} onPress={() => this._filterRecipes()}>
             <Image
               source={require('../Images/ic_search.png')}
               style={styles.icon}

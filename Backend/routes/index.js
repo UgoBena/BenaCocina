@@ -3,7 +3,7 @@ var Recipe = require('../models/Recipe')
 var router = express.Router();
 
 
-const test = new Recipe({ 
+/*const test = new Recipe({ 
   name: 'Miam miam',
   overview: "on va se régaleeer",
   prep_time: "20min",
@@ -30,7 +30,7 @@ const test = new Recipe({
     }
   ],
   comments:["vraiment on se régale", "NRV"]
-});
+});*/
 
 /* GET ALL recipes. */
 router.get('/getRecipes', function(req, res, next) {

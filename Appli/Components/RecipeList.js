@@ -14,9 +14,9 @@ class RecipeList extends React.Component{
         this._displayDetailForRecipe= this._displayDetailForRecipe.bind(this)
       }
 
-      _displayDetailForRecipe(id){
+      _displayDetailForRecipe(name){
         // On a récupéré les informations de la navigation, on peut afficher le détail du film
-        this.props.navigation.navigate('RecipeDetail', {idRecipe: id})
+        this.props.navigation.navigate('RecipeDetail', {recipeName: name})
       }
 
     render() {
@@ -25,10 +25,10 @@ class RecipeList extends React.Component{
             style={styles.list}
             data={this.props.recipes}
             extraData={this.props.favorites}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.name.toString()}
             renderItem={({item}) => <RecipeItem 
                         recipe={item} 
-                        isFavorite={this.props.favorites.findIndex((film)=> film.id === item.id) !==-1} 
+                        isFavorite={this.props.favorites.findIndex((recipe)=> recipe.name === item.name) !==-1} 
                         displayDetailForRecipe={this._displayDetailForRecipe}/>
                         }
             />

@@ -1,4 +1,4 @@
-// Components/AddRecipe.js
+// Components/CategoryList.js
 
 import React from 'react'
 
@@ -16,31 +16,36 @@ class CategoryList extends React.Component {
         {
           title:"Toutes les recettes",
           name:"all",
-          image:require('../Images/img_all.jpg')
+          image:require('../Images/img_all.jpg'),
+          isDishType:true,
         },
         {
           title:"Entrées/Tapas",
           name:"starter",
-          image:require('../Images/img_starters.jpg')
+          image:require('../Images/img_starters.jpg'),
+          isDishType:true,
         },
         {
           title:"Plats",
           name:"plat",
-          image:require('../Images/img_maindish.jpg')
+          image:require('../Images/img_maindish.jpg'),
+          isDishType:true,
         },
         {
           title:"Desserts",
           name:"dessert",
-          image:require('../Images/img_dessert.jpg')
+          image:require('../Images/img_dessert.jpg'),
+          isDishType:true,
         },
       ]
     }
   }
 
+
   _displayCategory(category){
-    console.log(category);
     return(
-      <TouchableOpacity style={styles.category} onPress={ () => this.props.navigation.navigate("Search",{category:category})}>
+      <TouchableOpacity style={styles.category} onPress={ () => this.props.navigation.
+        navigate("Search",{isDishType:category.isDishType,category:category})}>
           <Image 
             style={styles.image} 
             source={category.image}

@@ -3,7 +3,6 @@
 import React from "react";
 //Native components
 import {TouchableOpacity, StyleSheet, View, Image,Text} from "react-native";
-import { getImageFromApi } from '../API/TMDBApi';
 
 //global styles
 import gStyles from "../Styles";
