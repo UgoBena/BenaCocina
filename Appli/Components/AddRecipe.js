@@ -7,7 +7,7 @@ import gStyles from "../Styles";
 import { StyleSheet, View,Text , TouchableOpacity,  } from 'react-native';
 import {Divider} from 'react-native-elements'
 
-import AddRecipeForm from "./AddRecipeForm";
+import AddRecipeForm from "./AddRecipeFormTest";
 
 class AddRecipe extends React.Component {
 
@@ -23,18 +23,8 @@ class AddRecipe extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.header}>Ajouter une recette</Text>
-        <Divider/>
-        <View style={styles.form}>
-          <AddRecipeForm recipe={this.recipe}/>
-        </View>
-
-        <TouchableOpacity
-          onPress={this._handleSubmit}
-          style={styles.submit_button}>
-          <Text>Créer la recette !</Text>
-        </TouchableOpacity>
+      <View style={gStyles.main_container}>
+        <AddRecipeForm submitAction={this._handleSubmit} recipe={this.recipe}/>
       </View>
     )
   }
@@ -42,19 +32,8 @@ class AddRecipe extends React.Component {
 
 const styles = StyleSheet.create({
   container:{
-    flex:1,
-    padding:5
+    padding:10
   },
-  header:{
-    fontSize:26,
-    marginTop:20,
-    marginBottom:20
-  },
-  form:{
-  },
-  submit_button:{
-
-  }
 })
 
 

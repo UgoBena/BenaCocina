@@ -22,35 +22,58 @@ const SearchStackNavigator = createStackNavigator({
   },
   Search: {
     screen: Search,
-    navigationOptions: {
-      title:'',
-      headerTintColor: '#000000'
-    }
+    //The title is defined in the component as it is dependent on some parameter
   },
   RecipeDetail: {
     screen: RecipeDetail,
     navigationOptions: {
       title: 'Details',
-      headerTintColor: '#000000'
     }
   }
 },
-)
+  {
+    defaultNavigationOptions:{
+      headerTintColor:'#000',
+      headerStyle:{height:50}
+  }
+})
 
-const FavoritesStackNavigator = createStackNavigator({
-  Favorite: {
-    screen: Favorites,
-    navigationOptions: {
-      title: 'Favoris',
-      headerTintColor: '#000000'
+const FavoritesStackNavigator = createStackNavigator(
+  {
+    Favorite: {
+      screen: Favorites,
+      navigationOptions: {
+        title: 'Favoris',
+      }
+    },
+    RecipeDetail: {
+      screen: RecipeDetail,
+      navigationOptions: {
+        title: 'Details',
+      }
     }
   },
-  RecipeDetail: {
-    screen: RecipeDetail,
-    navigationOptions: {
-      title: 'Details',
-      headerTintColor: '#000000'
+  {
+    defaultNavigationOptions:{
+        headerTintColor: '#000000',
+        headerStyle:{height:50}
+  }
+})
+
+const AddRecipeStackNavigator = createStackNavigator(
+  {
+    Add: {
+      screen: AddRecipe,
+      navigationOptions: {
+        title: 'Ajouter une recette',
+      }
     }
+  },
+  {
+    defaultNavigationOptions:{
+        headerTintColor: '#000000',
+        headerStyle:{height:50}
+
   }
 })
 
@@ -77,7 +100,7 @@ const RecipesTabNavigator = createBottomTabNavigator(
         }
     },
     Add:{
-      screen:AddRecipe,
+      screen:AddRecipeStackNavigator,
       navigationOptions: {
           tabBarIcon: () => { // On définit le rendu de nos icônes par les images récemment ajoutés au projet
             return <Image

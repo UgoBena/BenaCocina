@@ -18,6 +18,14 @@ import { getRecipesFromAPI,getRecipesFromAPIByDishType } from "../API/BenaCocina
 
 class Search extends React.Component{
 
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.state.params.category.title
+    };
+  };
+
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +37,7 @@ class Search extends React.Component{
     }
     this.searchedText = "";
   }
+
 
   componentDidMount(){
     this._getRecipes(this.state.category,this.state.isDishType);
@@ -86,9 +95,6 @@ class Search extends React.Component{
   render() {
     return (
       <View style={gStyles.main_container}>
-        <View style={styles.header}>
-          <Text style={styles.header_text}>{this.state.category.title}</Text>
-        </View>
         <View style={styles.search_bar}>
           <TextInput 
           placeholder="Entrer le nom d'une recette à rechercher"
@@ -137,6 +143,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight:5,
     marginBottom:10,
+    marginTop:10
 
   },
   icon:{
