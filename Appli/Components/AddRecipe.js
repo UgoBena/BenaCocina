@@ -4,7 +4,8 @@ import React from 'react'
 
 import gStyles from "../Styles";
 
-import { StyleSheet, View,Text , TouchableOpacity,  } from 'react-native';
+import { StyleSheet, View,ScrollView,Text , TouchableOpacity, Keyboard } from 'react-native';
+import {KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {Divider} from 'react-native-elements'
 
 import AddRecipeForm from "./AddRecipeFormTest";
@@ -23,9 +24,10 @@ class AddRecipe extends React.Component {
 
   render() {
     return (
-      <View style={gStyles.main_container}>
+      <KeyboardAwareScrollView style={gStyles.main_container}>
         <AddRecipeForm submitAction={this._handleSubmit} recipe={this.recipe}/>
-      </View>
+      </KeyboardAwareScrollView>
+        
     )
   }
 }

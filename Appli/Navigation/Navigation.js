@@ -7,17 +7,17 @@ import { createStackNavigator } from 'react-navigation-stack';
 import {createBottomTabNavigator} from "react-navigation-tabs";
 
 //Custom Components
-import CategoryList from "../Components/CategoryList"
+import HomeScreen from "../Components/HomeScreen"
 import Search from '../Components/Search';
 import RecipeDetail from '../Components/RecipeDetail';
 import Favorites from '../Components/Favorites';
 import AddRecipe from '../Components/AddRecipe';
 
 const SearchStackNavigator = createStackNavigator({
-  Categories:{
-    screen:CategoryList,
+  Home:{
+    screen:HomeScreen,
     navigationOptions: {
-      title: 'Categories',
+      title: 'Général',
     }
   },
   Search: {

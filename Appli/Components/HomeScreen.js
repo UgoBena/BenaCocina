@@ -1,4 +1,4 @@
-// Components/CategoryList.js
+// Components/HomeScreen.js
 
 import React from 'react'
 
@@ -7,7 +7,7 @@ import gStyles from "../Styles";
 import { TouchableOpacity,StyleSheet, View, Image, FlatList, Text } from 'react-native';
 
 
-class CategoryList extends React.Component {
+class HomeScreen extends React.Component {
 
   constructor(props){
     super(props);
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
 
 
 
-export default CategoryList
+export default HomeScreen
