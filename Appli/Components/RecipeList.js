@@ -25,7 +25,7 @@ class RecipeList extends React.Component{
             style={styles.list}
             data={this.props.recipes}
             extraData={this.props.favorites}
-            keyExtractor={(item) => item.name.toString()}
+            keyExtractor={(item) => item.name}
             renderItem={({item}) => <RecipeItem 
                         recipe={item} 
                         isFavorite={this.props.favorites.findIndex((recipe)=> recipe.name === item.name) !==-1} 

@@ -13,7 +13,8 @@ class Favorites extends React.Component {
 
 
   render() {
-
+    console.log("favorites :");
+    console.log(this.props.favorites);
     return (
       <View style={gStyles.main_container}>
         <RecipeList

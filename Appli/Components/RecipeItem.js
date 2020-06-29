@@ -22,7 +22,7 @@ class RecipeItem extends React.Component{
     const { recipe, displayDetailForRecipe } = this.props;
     return(
       <TouchableOpacity style={styles.container}
-      onPress={() => displayDetailForRecipe(recipe.id)}>
+      onPress={() => displayDetailForRecipe(recipe.name)}>
         <Image style={styles.poster} source={recipe.image_path} />
         <View style={styles.properties}>
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
 
   properties_header:{
-    flex:3,
+    flex:2,
     flexDirection:"row",
   },
   title_text:{
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   properties_footer:{
-    flex:1,
+    flex:2,
     marginBottom:10
   },
   release_date:{

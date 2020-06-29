@@ -4,8 +4,13 @@ import React from 'react'
 
 import gStyles from "../Styles";
 
-import {Keyboard,StyleSheet,View, Text,TextInput, TouchableOpacity, Button, Image } from 'react-native';
+import {Keyboard,StyleSheet,View, Text,TextInput, TouchableOpacity, Button, Image, FlatList } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
+
+import CategoryItem from './CategoryItem';
+import IngredientItem from './IngredientItem';
+import StepItem from './StepItem';
+
 
 class AddRecipeForm extends React.Component {
 
@@ -28,93 +33,158 @@ class AddRecipeForm extends React.Component {
     this.prep_time="";
     this.nb_persons=0;
     this.dish_type="";
-    this.categories=[];
-    this.ingredients=[];
-    this.steps=[];
-    this.comments=[];
     
-    //Variable used as a key for every item, incremented once every time an item is added
-    //to keep it unique per item
-    this._keyCounter = 0;
-
-    this.nbCategories = 0;
-    this._ingredientsItem = [];
-    this._stepsItem = [];
-    this._commentsItem = [];
+    this.categories = [];
+    this.ingredients = [];
+    this.steps = [];
+    this.comments = [];
 
     this.state = {
       categoriesItem:[],
-      nbIngredients:0,
-      nbSteps:0,
-      nbComments:0
+      ingredientsItem:[],
+      stepsItem:[],
+      commentsItem:[]
     }
   }
 
-  _displayIngredients(){
-    const items = [];
-    for (var i = 0; i < this.state.nbIngredients; i++) {
-      let copy = i;
-        items.push(
-          <View key={copy} style={styles.ingredient}>
+  _resetForm(){
+    this.categories = [];
+    this.ingredients = [];
+    this.steps = [];
+    this.comments = [];
 
-            <TextInput  
-            placeholder="Quantité"
-            style={styles.quantity_textinput}
-            keyboardType="numeric"
-            blurOnSubmit={true}
-            onChangeText={ (text) => {this.ingredients[copy].quantity = parseFloat(text)}}
-            />
+    this.setState({
+      categoriesItem:[],
+      ingredientsItem:[],
+      stepsItem:[],
+      commentsItem:[]
+    })
+  }
 
-            <Dropdown
-            onChangeText={(value, index, data) => 
-            {this.ingredients[copy].unit=value;console.log(this.ingredients[copy])}}
-            containerStyle={styles.quantity_dropdown}
-            data={this._unitsData}
-            dropdownOffset={{top:15,left:0}}
-            value={this.ingredients[copy].unit}
-            />
-
-            <TextInput  
-            placeholder="Nom"
-            style={styles.ingredient_textinput}
-            blurOnSubmit={true}
-            onChangeText={ (text) => {this.ingredients[copy].name = text}}
-            />
-
-          <View style={styles.button_container}>
-            <TouchableOpacity style={styles.button} onPress= {() => {this._removeIngredient(copy)}}>
-               <Image
-                source={require('../Images/ic_minus.png')}
-                style={styles.icon}/>
-            </TouchableOpacity>
-          </View>
-          </View>
+  _makeCategoriesItem(categories){
+    let categoriesItem = [];
+    for (var i = 0; i<categories.length;i++){
+      categoriesItem.push(
+        <CategoryItem
+        key={i}
+        categoriesData={this._categoriesData}
+        index={i}
+        value={categories[i]}
+        modifyCategoryValue={this.modifyCategoryValue}
+        removeCategory={this.removeCategory}
+        />
         )
-      }
-
-    return(
-      <View style={styles.categories_container}>{this._ingredientsItem}</View>
-    )
-
+    }
+    return categoriesItem
   }
 
   _addCategory(){
-    let newCategories = [...this.state.categories,""]
-    this._keyCounter++;
-
-    this.setState({categories:newCategories});
-    
+    this.categories.push("");
+    this.setState({categoriesItem:this._makeCategoriesItem(this.categories)})    
   }
 
-  _removeCategory(index){
-    console.log(index);
-    let newCategories = [...this.state.categoriesItem];
+  removeCategory = (index) => {
+    this.categories.splice(index,1);
+    this.setState({categoriesItem:this._makeCategoriesItem(this.categories)})      
 
-    newCategories.splice(index,1);
+  }
+  modifyCategoryValue = (value,index) => {
+    this.categories[index] = value;
+    console.log(this.categories)
+  }
 
-    this.setState({categoriesItem:newCategories});
-    
+   _makeIngredientsItem(ingredients){
+    let ingredientsItem = [];
+    for (var i = 0; i<ingredients.length;i++){
+      ingredientsItem.push(
+        <IngredientItem
+        key={i}
+        index={i}
+        unitsData={this._unitsData}
+        ingredient={ingredients[i]}
+        modifyIngredientQuantity={this.modifyIngredientQuantity}
+        modifyIngredientUnit={this.modifyIngredientUnit}
+        modifyIngredientName={this.modifyIngredientName}
+        removeIngredient={this.removeIngredient}
+        />
+        )
+    }
+    return ingredientsItem
+  }
 
+  _addIngredient(){
+    this.ingredients.push({quantity:0,unit:"",name:""});
+    this.setState({ingredientsItem:this._makeIngredientsItem(this.ingredients)});    
+  }
+
+
+  removeIngredient = (index) => {
+    this.ingredients.splice(index,1);
+    this.setState({ingredientsItem:this._makeIngredientsItem(this.ingredients)});     
+
+  }
+  modifyIngredientQuantity = (value,index) => {
+    this.ingredients[index].quantity = parseFloat(value);
+    console.log(this.ingredients);
+  }
+  modifyIngredientUnit = (value,index) => {
+    this.ingredients[index].unit = value;
+    console.log(this.ingredients);
+  }
+  modifyIngredientName = (value,index) => {
+    this.ingredients[index].name = value;
+    console.log(this.ingredients);
+  }
+
+  _makeStepsItem(steps){
+    let stepsItem = [];
+    for (var i = 0; i<steps.length;i++){
+      stepsItem.push(
+        <StepItem
+        key={i}
+        index={i}
+        value={steps[i].description}
+        modifyStepValue={this.modifyStepValue}
+        removeStep={this.removeStep}
+        />
+        )
+    }
+    return stepsItem
+  }
+
+  _addStep(){
+    this.steps.push({description:"",image:""})
+    this.setState({stepsItem:this._makeStepsItem(this.steps)})    
+  }
+
+  removeStep = (index) => {
+    this.steps.splice(index,1);
+    this.setState({stepsItem:this._makeStepsItem(this.steps)});
+  }
+  modifyStepValue = (value,index) => {
+    this.steps[index].description = value;
+  }
+
+
+
+  _makeRecipe(){
+    const recipe = {
+      name:this.name,
+      overview:this.overview,
+      prep_time:this.prep_time,
+      cook_time:this.cook_time,
+      nb_persons:this.nb_persons,
+      dish_type:this.dish_type,
+      categories:this.categories,
+      ingredients:this.ingredients,
+      steps:this.steps,
+      comments:this.comments
+    };
+
+    this.props.submitRecipe(recipe).then( (data) => {
+      this._resetForm();
+    })
+    .catch((err) => console.log(err));
   }
 
   render(){
@@ -219,12 +289,11 @@ class AddRecipeForm extends React.Component {
               <Text style={styles.label}>Ingredients :</Text>
             </View>
           <View style={styles.categories_input}>
-           {this._displayIngredients()}
+           {this.state.ingredientsItem}
           </View>
 
           <View style={styles.button_container}>
-            <TouchableOpacity style={styles.button} onPress= {() => {this.ingredients.push({quantity:0,unit:"",name:""});
-            this.setState({nbIngredients:this.state.nbIngredients+1})}}>
+            <TouchableOpacity style={styles.button} onPress= {() => this._addIngredient()}>
              <Image
                 source={require('../Images/ic_plus.png')}
                 style={styles.icon}/>
@@ -232,7 +301,33 @@ class AddRecipeForm extends React.Component {
           </View> 
         </View>
         
-        
+        {/*STEPS*/}
+        <View style={styles.row}>
+           <View style={styles.categories_labelview}>
+              <Text style={styles.label}>Etapes :</Text>
+            </View>
+          <View style={styles.categories_input}>
+           {this.state.stepsItem}
+          </View>
+
+          <View style={styles.button_container}>
+            <TouchableOpacity style={styles.button} onPress= {() => this._addStep()}>
+             <Image
+                source={require('../Images/ic_plus.png')}
+                style={styles.icon}/>
+            </TouchableOpacity>
+          </View> 
+        </View>
+
+      {/*SUBMIT BUTTON*/}
+        <View style={styles.submit_button_container}>
+        <TouchableOpacity onPress={() => this._makeRecipe()}>
+          <Text style={styles.submit_button}>
+          Ajouter la recette !
+          </Text>
+        </TouchableOpacity>
+          
+        </View>
       </View>
     )
   }
@@ -306,17 +401,17 @@ const styles = StyleSheet.create({
   time_picker:{
     width:100
   },
-  ingredient:{
-    flexDirection:"row"
+  submit_button:{
+    borderWidth:1,
+    color:"#ffffff",
+    backgroundColor:"#000000",
+    padding:10,
+    borderRadius:25
   },
-  quantity_textinput:{
-    width:40
-  },
-  quantity_dropdown:{
-    width:50
-  },
-  ingredient_textinput:{
-    width:80
+  submit_button_container:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center"
   }
 })
 

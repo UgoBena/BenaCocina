@@ -24,7 +24,7 @@ class RecipeDetail extends React.Component{
 
   componentDidMount(){
     //check if component is in favorites list
-    const favoriteIndex = this.props.favorites.findIndex(item => item.id === this.props.navigation.state.params.recipeName)
+    const favoriteIndex = this.props.favorites.findIndex(item => item.name === this.props.navigation.state.params.recipeName);
     //if it is, simply grab its data from redux store
     if (favoriteIndex!==-1){
       this.setState({recipe:this.props.favorites[favoriteIndex]})
@@ -33,7 +33,8 @@ class RecipeDetail extends React.Component{
     else{
       this.setState({isLoading:true});
       getRecipeDetailFromApi(this.props.navigation.state.params.recipeName).then(res => {
-              this.setState({recipe:res,isLoading:false})
+        recipe = res[0];
+        this.setState({recipe:recipe,isLoading:false});
       }).catch(err => console.log(err));
     }
     

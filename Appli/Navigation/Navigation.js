@@ -34,7 +34,7 @@ const SearchStackNavigator = createStackNavigator({
   {
     defaultNavigationOptions:{
       headerTintColor:'#000',
-      headerStyle:{height:50}
+      headerStyle:{height:60}
   }
 })
 
@@ -56,7 +56,7 @@ const FavoritesStackNavigator = createStackNavigator(
   {
     defaultNavigationOptions:{
         headerTintColor: '#000000',
-        headerStyle:{height:50}
+        headerStyle:{height:60}
   }
 })
 
@@ -72,7 +72,7 @@ const AddRecipeStackNavigator = createStackNavigator(
   {
     defaultNavigationOptions:{
         headerTintColor: '#000000',
-        headerStyle:{height:50}
+        headerStyle:{height:60}
 
   }
 })

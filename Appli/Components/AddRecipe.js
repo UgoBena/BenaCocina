@@ -8,24 +8,25 @@ import { StyleSheet, View,ScrollView,Text , TouchableOpacity, Keyboard } from 'r
 import {KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {Divider} from 'react-native-elements'
 
-import AddRecipeForm from "./AddRecipeFormTest";
+import {AddRecipeApi} from "../API/BenaCocinaBackApi";
+
+import AddRecipeForm from "./AddRecipeForm";
 
 class AddRecipe extends React.Component {
 
   constructor(props){
     super(props);
-    this.recipe = {};
-    this._handleSubmit = this._handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  _handleSubmit(){
-    console.log('value :', this.recipe);
+  async handleSubmit(recipe){
+    AddRecipeApi(recipe);
   }
 
   render() {
     return (
       <KeyboardAwareScrollView style={gStyles.main_container}>
-        <AddRecipeForm submitAction={this._handleSubmit} recipe={this.recipe}/>
+        <AddRecipeForm submitRecipe={this.handleSubmit}/>
       </KeyboardAwareScrollView>
         
     )

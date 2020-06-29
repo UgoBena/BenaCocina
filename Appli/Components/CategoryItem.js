@@ -4,7 +4,8 @@ import React from 'react'
 
 import gStyles from "../Styles";
 
-import { StyleSheet, View , TouchableOpacity } from 'react-native';
+import { StyleSheet, View , TouchableOpacity,Image } from 'react-native';
+import { Dropdown } from 'react-native-material-dropdown';
 
 
 class CategoryItem extends React.Component {
@@ -16,7 +17,8 @@ class CategoryItem extends React.Component {
         containerStyle={styles.dropdown}
         data={this.props.categoriesData}
         dropdownOffset={{top:0,left:0}}
-        onChangeText={(value,index,data) => this.props.category = value;}
+        onChangeText={(value,index,data) => {this.props.modifyCategoryValue(value,this.props.index)}}
+        value={this.props.value}
         />
 
         <TouchableOpacity onPress= {() => {
