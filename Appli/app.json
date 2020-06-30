@@ -22,7 +22,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.benainc.benacocina"
+    },
+    "android":{
+      "package":"com.benainc.benacocina"
     }
   }
 }
