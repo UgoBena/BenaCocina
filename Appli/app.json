@@ -25,8 +25,9 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.benainc.benacocina"
     },
-    "android":{
-      "package":"com.benainc.benacocina"
-    }
+    "android": {
+      "package": "com.benainc.benacocina"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
