@@ -3,11 +3,6 @@ var Recipe = require('../models/Recipe');
 const multer = require("multer");
 var router = express.Router();
 
-const upload = multer({
-  dest: "/tempImages"
-  // you might also want to set some limits: https://github.com/expressjs/multer#limits
-});
-
 /*const test = new Recipe({ 
   name: 'Miam miam',
   overview: "on va se régaleeer",
