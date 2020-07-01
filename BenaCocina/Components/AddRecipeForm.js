@@ -238,7 +238,7 @@ class AddRecipeForm extends React.Component {
           <View style={styles.name_input}>
             <Text style={styles.label}>Nom</Text>
             <TextInput  
-            placeholder="Entrer le nom de la recette"
+            placeholder="Entrez le nom de la recette"
             multiline={true}
             numberOfLines={2}
             style={styles.name_textinput}

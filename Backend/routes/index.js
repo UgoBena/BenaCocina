@@ -3,6 +3,7 @@ var Recipe = require('../models/Recipe');
 const multer = require("multer");
 var router = express.Router();
 
+var upload = multer({ storage: "/tmp" })
 /*const test = new Recipe({ 
   name: 'Miam miam',
   overview: "on va se régaleeer",
@@ -91,13 +92,23 @@ router.post('/addRecipe',function(req,res,next){
   });
 });
 
-/* Add images */
-router.post('/addImages',function(req,res,next){
-  var data = req.body;
-  console.log(data);
-  res.send(data);
-});
 
+router.post('/uploadMainPhoto', upload.single('image'), (req, res) => {
+    var img = fs.readFileSync(req.file.path);
+    var data = req.body;
+   var encode_image = img.toString('base64');
+   // Define a JSONobject for the image attributes for saving to database
+   var finalImg = {
+        contentType: req.file.mimetype,
+        image:  new Buffer(encode_image, 'base64')
+     };
+   Recipe.findOne({name:data.recipeName},function(err,recipe){
+    if (err) res.send(err);
+    Recipe.update({name:data.recipeName},{image_path:finalImg);
+    res.send("comment added");
+   })
+  })
+})
 /* Add comment to a recipe */
 router.post('/addComment',function(req,res,next){
   var data = req.body;
