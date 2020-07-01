@@ -28,29 +28,28 @@ export function getRecipeDetailFromApi (name) {
 export function AddRecipeApi (recipe) {
   const url = 'https://bena-cocina-back.herokuapp.com/addRecipe';
   const imageUploadUrl = 'https://bena-cocina-back.herokuapp.com/addImages';
-  let recipeToSend = JSON.parse(JSON.stringify(recipe)); 
+  console.log(recipe)
   //First upload the images to the server
   var data = new FormData();
   data.append('main_image', {
-      uri: recipe.imageUri,
+      uri: recipe.imageUri.uri,
       name: recipe.name + '.jpg',
       type: 'image/jpg'
   });
   //update recipe to send with the server uri of the image
-  recipeToSend.imageUri=recipe.name + '.jpg';
 
   for (var i =0; i<recipe.steps.length;i++){
     if(recipe.steps[i].image !== ""){
       data.append('step_image_'+i.toString(),{
-        uri: recipe.steps[i].image,
-        name: recipe.name + 'step' + i.toString() '.jpg',
+        uri: recipe.steps[i].image.uri,
+        name: recipe.name + 'step' + i.toString() + '.jpg',
         type: 'image/jpg'
       });
-      recipeToSend.steps[i].image= recipe.name + 'step' + i.toString() '.jpg';
     }
   }
 
-  const rawResponse = await fetch(imageUploadUrl, {
+   /*(async () => {
+    const rawResponse = await fetch(imageUploadUrl, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'multipart/form-data'
@@ -60,7 +59,11 @@ export function AddRecipeApi (recipe) {
   });
 
   const content = await rawResponse.json();
+  console.log(content);
   return content;
+  })
+*/
+
 
   //then send the recipe data
   (async () => {
@@ -70,7 +73,7 @@ export function AddRecipeApi (recipe) {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(recipeToSend)
+    body: JSON.stringify(recipe)
   });
   const content = await rawResponse.json();
 

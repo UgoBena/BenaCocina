@@ -50,6 +50,13 @@ class AddRecipeForm extends React.Component {
   }
 
   _resetForm(){
+    this.name="";
+    this.overview="";
+    this.cook_time="";
+    this.prep_time="";
+    this.nb_persons=0;
+    this.dish_type="";
+
     this.categories = [];
     this.ingredients = [];
     this.steps = [];
@@ -59,7 +66,8 @@ class AddRecipeForm extends React.Component {
       categoriesItem:[],
       ingredientsItem:[],
       stepsItem:[],
-      commentsItem:[]
+      commentsItem:[],
+      image:require('../Images/empty_image.png')
     })
   }
 
@@ -175,7 +183,7 @@ class AddRecipeForm extends React.Component {
 
   _makeRecipe(){
     const recipe = {
-      imageUri:this.main_image,
+      imageUri:this.state.image,
       name:this.name,
       overview:this.overview,
       prep_time:this.prep_time,

@@ -89,10 +89,10 @@ router.post('/addRecipe',function(req,res,next){
     ingredients:data.ingredients,
     steps:data.steps,
     comments:data.comments
-  })
+  });
   newRecipe.save(function(err,recipe){
     if (err) res.send(err);
-    res.send(recipe);
+    res.send("recipe added");
   });
 });
 

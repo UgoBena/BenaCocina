@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   
   ingredient:{
     flexDirection:"row",
-    height:30,
+    height:50,
     marginBottom:10
   },
   icon:{
