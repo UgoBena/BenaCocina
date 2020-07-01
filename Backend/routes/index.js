@@ -87,7 +87,7 @@ router.post('/addRecipe',function(req,res,next){
   });
   newRecipe.save(function(err,recipe){
     if (err) res.send(err);
-    res.send("recipe added");
+    res.send(recipe);
   });
 });
 
