@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const RecipeSchema = mongoose.Schema({
+  image_path:{
+    type:String,
+  },
   name:{
     type: String,
     required: true,

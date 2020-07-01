@@ -1,7 +1,12 @@
 var express = require('express');
-var Recipe = require('../models/Recipe')
+var Recipe = require('../models/Recipe');
+const multer = require("multer");
 var router = express.Router();
 
+const upload = multer({
+  dest: "/tempImages"
+  // you might also want to set some limits: https://github.com/expressjs/multer#limits
+});
 
 /*const test = new Recipe({ 
   name: 'Miam miam',
@@ -64,7 +69,7 @@ router.get('/getRecipeByName', function(req, res, next) {
   Recipe.find(filter,function(err,recipe){
     if (err) res.send(err);
     res.send(recipe);
-  })
+  });
 });
 
 /* Get recipies by regexp */
@@ -89,7 +94,14 @@ router.post('/addRecipe',function(req,res,next){
     if (err) res.send(err);
     res.send(recipe);
   });
-})
+});
+
+/* Add images */
+router.post('/addImages',function(req,res,next){
+  var data = req.body;
+  console.log(data);
+  res.send(data);
+});
 
 /* Add comment to a recipe */
 router.post('/addComment',function(req,res,next){
@@ -101,7 +113,7 @@ router.post('/addComment',function(req,res,next){
     Recipe.update({name:data.recipeName},{comments:[...recipe.comments,data.comment]});
     res.send("comment added");
   })
-})
+});
 
 
 
