@@ -104,11 +104,11 @@ router.post('/uploadMainPhoto', upload.single('image'), (req, res) => {
      };
    Recipe.findOne({name:data.recipeName},function(err,recipe){
     if (err) res.send(err);
-    Recipe.update({name:data.recipeName},{image_path:finalImg);
+    Recipe.update({name:data.recipeName},{image_path:finalImg});
     res.send("comment added");
    })
   })
-})
+
 /* Add comment to a recipe */
 router.post('/addComment',function(req,res,next){
   var data = req.body;
