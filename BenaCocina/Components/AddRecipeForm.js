@@ -179,7 +179,7 @@ class AddRecipeForm extends React.Component {
 
   _makeRecipe(){
     const recipe = {
-      imageUri:this.state.image,
+      imageUri:this.state.image.uri,
       name:this.name,
       overview:this.overview,
       prep_time:this.prep_time,

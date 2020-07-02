@@ -41,8 +41,8 @@ export function AddRecipeApi (recipe) {
     },
     body: JSON.stringify(recipe)
   });
-  /*const content = await rawResponse.json();
-  if (content.errors){
+  const content = await rawResponse.json();
+  /*if (content.errors){
     console.log("erros:");
     console.log(content.errors)
     return content.errors;
@@ -50,25 +50,25 @@ export function AddRecipeApi (recipe) {
 
   var data = new FormData();
   //then upload the main image to the server
-  if (recipe.imageUri){
+  if (recipe.imageUri !== undefined){
     data.append('main_image', {
-        uri: recipe.imageUri.uri,
+        uri: recipe.imageUri,
         name: recipe.name + '.jpg',
         type: 'image/jpg'
     });
-    console.log(data);
-    console.log(data._parts)
-    return data;
 
-
+    console.log(data._parts);
+    
     fetch(mainImageUploadUrl, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
-      },
-      method: 'POST',
-      body: data
-    });
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data'
+        },
+        method: 'POST',
+        body: data._parts
+      }).catch( (err) => console.log(err));
+      
+    
   }
 
 

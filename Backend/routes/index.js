@@ -1,9 +1,19 @@
 var express = require('express');
 var Recipe = require('../models/Recipe');
+const path = require('path')
 const multer = require("multer");
 var router = express.Router();
 
-var upload = multer({ storage: "/tmp" })
+var storage = multer.diskStorage({   
+   destination: function(req, file, cb) { 
+      cb(null, path.join(__dirname, '../public/images/'));    
+   }, 
+   filename: function (req, file, cb) { 
+      cb(null , file.originalname);   
+   }
+});
+
+var upload = multer({ storage: storage })
 /*const test = new Recipe({ 
   name: 'Miam miam',
   overview: "on va se régaleeer",
@@ -94,21 +104,7 @@ router.post('/addRecipe',function(req,res,next){
 
 /* upload photos */
 router.post('/uploadMainPhoto', upload.single('main_image'), (req, res) => {
-  console.log(req.file);
-  console.log(req.body);
-    var img = fs.readFileSync(req.file.path);
-    var data = req.body;
-   var encode_image = img.toString('base64');
-   // Define a JSONobject for the image attributes for saving to database
-   var finalImg = {
-        contentType: req.file.mimetype,
-        image:  new Buffer(encode_image, 'base64')
-     };
-   Recipe.findOne({name:data.recipeName},function(err,recipe){
-    if (err) res.send(err);
-    Recipe.update({name:data.recipeName},{image_path:finalImg});
-    res.send("main image added");
-   })
+  res.send("hello");
   })
 
 router.post('/uploadStepPhoto', upload.single('step_image'), (req, res) => {
