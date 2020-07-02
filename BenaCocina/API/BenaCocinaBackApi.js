@@ -27,45 +27,11 @@ export function getRecipeDetailFromApi (name) {
 //Ajout d'une recette
 export function AddRecipeApi (recipe) {
   const url = 'https://bena-cocina-back.herokuapp.com/addRecipe';
-  const imageUploadUrl = 'https://bena-cocina-back.herokuapp.com/addImages';
-  console.log(recipe)
-  //First upload the images to the server
-  var data = new FormData();
-  data.append('main_image', {
-      uri: recipe.imageUri.uri,
-      name: recipe.name + '.jpg',
-      type: 'image/jpg'
-  });
-  //update recipe to send with the server uri of the image
+  const mainImageUploadUrl = 'https://bena-cocina-back.herokuapp.com/uploadMainPhoto';
+  const stepImageUploadUrl = 'https://bena-cocina-back.herokuapp.com/uploadStepPhoto';
+  
 
-  for (var i =0; i<recipe.steps.length;i++){
-    if(recipe.steps[i].image !== ""){
-      data.append('step_image_'+i.toString(),{
-        uri: recipe.steps[i].image.uri,
-        name: recipe.name + 'step' + i.toString() + '.jpg',
-        type: 'image/jpg'
-      });
-    }
-  }
-
-   /*(async () => {
-    const rawResponse = await fetch(imageUploadUrl, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'multipart/form-data'
-    },
-    method: 'POST',
-    body: data
-  });
-
-  const content = await rawResponse.json();
-  console.log(content);
-  return content;
-  })
-*/
-
-
-  //then send the recipe data
+  //first send the recipe data
   (async () => {
   const rawResponse = await fetch(url, {
     method: 'POST',
@@ -75,8 +41,50 @@ export function AddRecipeApi (recipe) {
     },
     body: JSON.stringify(recipe)
   });
+
   const content = await rawResponse.json();
 
+  //then upload the main image to the server
+  var data = new FormData();
+  data.append('main_image', {
+      uri: recipe.imageUri.uri,
+      name: recipe.name + '.jpg',
+      type: 'image/jpg'
+  });
+
+  fetch(mainImageUploadUrl, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'multipart/form-data'
+    },
+    method: 'POST',
+    body: data
+  });
+
+  //then upload the image for each steps that contain one
+  for (var i =0; i<recipe.steps.length;i++){
+    if(recipe.steps[i].image !== ""){
+      data = new FormData();
+      data.append('step_image',{
+        uri: recipe.steps[i].image.uri,
+        name: recipe.name + 'step' + i.toString() + '.jpg',
+        type: 'image/jpg',
+      });
+      data.append('step',i);
+      data.append("recipeName",recipe.name);
+
+      fetch(stepImageUploadUrl, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'multipart/form-data'
+        },
+        method: 'POST',
+        body: data
+      });
+    }
+  }
+
+  //Finally upload all the steps images
   return content;
   })();
 }

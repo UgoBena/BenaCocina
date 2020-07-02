@@ -92,8 +92,9 @@ router.post('/addRecipe',function(req,res,next){
   });
 });
 
-
-router.post('/uploadMainPhoto', upload.single('image'), (req, res) => {
+/* upload photos */
+router.post('/uploadMainPhoto', upload.single('main_image'), (req, res) => {
+  console.log(req);
     var img = fs.readFileSync(req.file.path);
     var data = req.body;
    var encode_image = img.toString('base64');
@@ -105,9 +106,50 @@ router.post('/uploadMainPhoto', upload.single('image'), (req, res) => {
    Recipe.findOne({name:data.recipeName},function(err,recipe){
     if (err) res.send(err);
     Recipe.update({name:data.recipeName},{image_path:finalImg});
-    res.send("comment added");
+    res.send("main image added");
    })
   })
+
+router.post('/uploadStepPhoto', upload.single('step_image'), (req, res) => {
+    console.log(req);
+    var img = fs.readFileSync(req.file.path);
+    var data = req.body;
+   var encode_image = img.toString('base64');
+   // Define a JSONobject for the image attributes for saving to database
+   var finalImg = {
+        contentType: req.file.mimetype,
+        image:  new Buffer(encode_image, 'base64')
+     };
+   Recipe.findOne({name:data.recipeName},function(err,recipe){
+    if (err) res.send(err);
+    let newSteps = [...recipe.steps];
+    newSteps[data.step] = finalImg;
+    Recipe.update({name:data.recipeName},{steps:newSteps});
+    res.send("step image added");
+   })
+  })
+
+
+/* Get main_image from name */
+router.get('/photo/:name', (req, res) => {
+  var recipeName = req.params.name;
+   
+  Recipe.findOne({'name': recipeName }, (err, result) => {
+      if (err) return console.log(err)
+
+      if (result){
+        res.contentType('image/jpeg');
+        res.send(result.main_image.image.buffer);
+      }
+
+      else{
+        res.send("no such recipe")
+      }
+    })
+})
+
+
+/* Get step image from name and step index */
 
 /* Add comment to a recipe */
 router.post('/addComment',function(req,res,next){
