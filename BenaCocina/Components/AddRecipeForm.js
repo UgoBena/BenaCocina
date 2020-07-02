@@ -100,7 +100,6 @@ class AddRecipeForm extends React.Component {
   }
   modifyCategoryValue = (value,index) => {
     this.categories[index] = value;
-    console.log(this.categories)
   }
 
    _makeIngredientsItem(ingredients){
@@ -135,15 +134,12 @@ class AddRecipeForm extends React.Component {
   }
   modifyIngredientQuantity = (value,index) => {
     this.ingredients[index].quantity = parseFloat(value);
-    console.log(this.ingredients);
   }
   modifyIngredientUnit = (value,index) => {
     this.ingredients[index].unit = value;
-    console.log(this.ingredients);
   }
   modifyIngredientName = (value,index) => {
     this.ingredients[index].name = value;
-    console.log(this.ingredients);
   }
 
   _makeStepsItem(steps){
@@ -251,7 +247,7 @@ class AddRecipeForm extends React.Component {
             <Text style={styles.label}>Type de plat</Text>
             <Dropdown
             onChangeText={(value, index, data) => 
-            {this.dish_type=value;console.log(this.dish_type)}}
+            {this.dish_type=value;}}
             containerStyle={styles.dropdown}
             data={this._dishTypesData}
             dropdownOffset={{top:0,left:0}}

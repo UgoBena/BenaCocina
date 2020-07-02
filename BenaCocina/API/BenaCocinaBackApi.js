@@ -41,25 +41,37 @@ export function AddRecipeApi (recipe) {
     },
     body: JSON.stringify(recipe)
   });
+  /*const content = await rawResponse.json();
+  if (content.errors){
+    console.log("erros:");
+    console.log(content.errors)
+    return content.errors;
+  } */
 
-  const content = await rawResponse.json();
-
-  //then upload the main image to the server
   var data = new FormData();
-  data.append('main_image', {
-      uri: recipe.imageUri.uri,
-      name: recipe.name + '.jpg',
-      type: 'image/jpg'
-  });
+  //then upload the main image to the server
+  if (recipe.imageUri){
+    data.append('main_image', {
+        uri: recipe.imageUri.uri,
+        name: recipe.name + '.jpg',
+        type: 'image/jpg'
+    });
+    console.log(data);
+    console.log(data._parts)
+    return data;
 
-  fetch(mainImageUploadUrl, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'multipart/form-data'
-    },
-    method: 'POST',
-    body: data
-  });
+
+    fetch(mainImageUploadUrl, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
+      },
+      method: 'POST',
+      body: data
+    });
+  }
+
+
 
   //then upload the image for each steps that contain one
   for (var i =0; i<recipe.steps.length;i++){
@@ -83,8 +95,6 @@ export function AddRecipeApi (recipe) {
       });
     }
   }
-
-  //Finally upload all the steps images
   return content;
   })();
 }

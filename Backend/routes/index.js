@@ -94,7 +94,8 @@ router.post('/addRecipe',function(req,res,next){
 
 /* upload photos */
 router.post('/uploadMainPhoto', upload.single('main_image'), (req, res) => {
-  console.log(req);
+  console.log(req.file);
+  console.log(req.body);
     var img = fs.readFileSync(req.file.path);
     var data = req.body;
    var encode_image = img.toString('base64');
