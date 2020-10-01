@@ -1,5 +1,6 @@
 var express = require('express');
 var Recipe = require('../models/Recipe');
+const fs = require("fs");
 const path = require('path')
 const multer = require("multer");
 var router = express.Router();
@@ -14,34 +15,7 @@ var storage = multer.diskStorage({
 });
 
 var upload = multer({ storage: storage })
-/*const test = new Recipe({ 
-  name: 'Miam miam',
-  overview: "on va se régaleeer",
-  prep_time: "20min",
-  cook_time:"30min",
-  dish_type:"maindish",
-  categories:["méditerranéen","asiatique"],
-  ingredients:[{
-    quantity:40,
-    unit:"g",
-    name:"beurre"
-    },
-    {
-      quantity:1,
-      unit:"cuillere à soupe",
-      name:"sel"
-    }
-  ],
-  steps:[{
-      description:"touillez le sel et la farine ensemble.",
-    },
-    {
-      description:"maintenant dégustez en photo.",
-      image:"/blabla"
-    }
-  ],
-  comments:["vraiment on se régale", "NRV"]
-});*/
+
 
 /* GET ALL recipes. */
 router.get('/getRecipes', function(req, res, next) {
@@ -104,27 +78,45 @@ router.post('/addRecipe',function(req,res,next){
 
 /* upload photos */
 router.post('/uploadMainPhoto', upload.single('main_image'), (req, res) => {
-  res.send("hello");
-  })
+  console.log(req.file);
+  var img = fs.readFileSync(req.file.path);
+  var data = req.body;
+  var encode_image = img.toString('base64');
+  // Define a JSONobject for the image attributes for saving to database
+  var finalImg = {
+    contentType:req.file.mimetype,
+    image: new Buffer(encode_image, 'base64')
+  };
+  Recipe.findOne({name:data.recipeName},function(err,recipe){
+    if (err) res.send(err);
+    //newSteps[1] = finalImg;
+    recipe["main_image"]=finalImg;
+    console.log(recipe.main_image);
+    //console.log(newSteps);
+    recipe.save();
+    res.send("main image added");
+  });
+})
 
 router.post('/uploadStepPhoto', upload.single('step_image'), (req, res) => {
-    console.log(req);
-    var img = fs.readFileSync(req.file.path);
-    var data = req.body;
-   var encode_image = img.toString('base64');
-   // Define a JSONobject for the image attributes for saving to database
-   var finalImg = {
-        contentType: req.file.mimetype,
-        image:  new Buffer(encode_image, 'base64')
-     };
-   Recipe.findOne({name:data.recipeName},function(err,recipe){
+  var img = fs.readFileSync(req.file.path);
+  var data = req.body;
+  var encode_image = img.toString('base64');
+  var finalImg = {
+    contentType:req.file.mimetype,
+    image: new Buffer(encode_image, 'base64')
+  };
+  Recipe.findOne({name:data.recipeName},function(err,recipe){
     if (err) res.send(err);
-    let newSteps = [...recipe.steps];
-    newSteps[data.step] = finalImg;
-    Recipe.update({name:data.recipeName},{steps:newSteps});
+    //newSteps[1] = finalImg;
+    recipe.steps[data.step]["image"]=finalImg;
+    console.log(finalImg.buffer);
+    //console.log(newSteps);
+    recipe.save();
+
     res.send("step image added");
-   })
-  })
+  });
+})
 
 
 /* Get main_image from name */
@@ -135,7 +127,7 @@ router.get('/photo/:name', (req, res) => {
       if (err) return console.log(err)
 
       if (result){
-        res.contentType('image/jpeg');
+        res.contentType('image/png');
         res.send(result.main_image.image.buffer);
       }
 

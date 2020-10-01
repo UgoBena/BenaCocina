@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const RecipeSchema = mongoose.Schema({
-  image_path:{
+  main_image:{
     type:Object
   },
   name:{
@@ -46,7 +46,7 @@ const RecipeSchema = mongoose.Schema({
         type: String,
         required: true
       },
-      image:String
+      image:Object
     }],
     validate: {
       validator: function(v) {
