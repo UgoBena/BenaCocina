@@ -7,6 +7,9 @@ import {TouchableOpacity, StyleSheet, View, Image,Text} from "react-native";
 //global styles
 import gStyles from "../Styles";
 
+//API
+import {getRecipeMainImageFromApi} from "../API/BenaCocinaBackApi";
+
 class RecipeItem extends React.Component{
   _displayFavorite(){
     if(this.props.isFavorite){
@@ -20,10 +23,14 @@ class RecipeItem extends React.Component{
   }
   render(){
     const { recipe, displayDetailForRecipe } = this.props;
+    //if(recipe.main_image != undefined) getRecipeMainImageFromApi(recipe.name);
+
     return(
       <TouchableOpacity style={styles.container}
       onPress={() => displayDetailForRecipe(recipe.name)}>
-        <Image style={styles.poster} source={recipe.image_path} />
+        <Image style={styles.poster} source={recipe.main_image != undefined ? 
+          {uri:"data:" + recipe.main_image.contentType + ";base64," + recipe.main_image.image} 
+          : require('../Images/empty_image.png')} />
         <View style={styles.properties}>
 
           <View style={styles.properties_header}>

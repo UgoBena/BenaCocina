@@ -58,6 +58,7 @@ router.get('/getRecipeByName', function(req, res, next) {
 /* Add a new recipe */
 router.post('/addRecipe',function(req,res,next){
   var data = req.body;
+  console.log(data);
   const newRecipe = new Recipe({
     name: data.name,
     overview: data.overview,
@@ -78,7 +79,6 @@ router.post('/addRecipe',function(req,res,next){
 
 /* upload photos */
 router.post('/uploadMainPhoto', upload.single('main_image'), (req, res) => {
-  console.log(req.file);
   var img = fs.readFileSync(req.file.path);
   var data = req.body;
   var encode_image = img.toString('base64');
@@ -91,7 +91,6 @@ router.post('/uploadMainPhoto', upload.single('main_image'), (req, res) => {
     if (err) res.send(err);
     //newSteps[1] = finalImg;
     recipe["main_image"]=finalImg;
-    console.log(recipe.main_image);
     //console.log(newSteps);
     recipe.save();
     res.send("main image added");
@@ -120,7 +119,7 @@ router.post('/uploadStepPhoto', upload.single('step_image'), (req, res) => {
 
 
 /* Get main_image from name */
-router.get('/photo/:name', (req, res) => {
+router.get('/mainPhoto/:name', (req, res) => {
   var recipeName = req.params.name;
    
   Recipe.findOne({'name': recipeName }, (err, result) => {
@@ -139,6 +138,33 @@ router.get('/photo/:name', (req, res) => {
 
 
 /* Get step image from name and step index */
+router.get('/stepPhoto/:name/:index', (req, res) => {
+  var recipeName = req.params.name;
+  var index = req.params.index;
+
+  Recipe.findOne({'name': recipeName }, (err, result) => {
+      if (err) return console.log(err)
+      console.log(result.steps);
+      if (result){
+        if(index<result.steps.length){
+          if (result.steps[index].image !== undefined){
+            res.contentType('image/png');
+            res.send(result.steps[index].image.image.buffer);
+          }
+          else{
+            res.send("this step has no image");
+          }
+        }
+        else{
+          res.send("no such step");
+        }
+      }
+
+      else{
+        res.send("no such recipe")
+      }
+    })
+})
 
 /* Add comment to a recipe */
 router.post('/addComment',function(req,res,next){

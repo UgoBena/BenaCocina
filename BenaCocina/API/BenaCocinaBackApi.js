@@ -24,6 +24,19 @@ export function getRecipeDetailFromApi (name) {
     .catch((error) => console.error(error));
 }
 
+//Récupérer l'image principal d'une recette à partir du nom
+export function getRecipeMainImageFromApi (name) {
+  const url = 'https://bena-cocina-back.herokuapp.com/photo/:'+ name;
+  return fetch(url)
+    .then((response) => console.log(response.blob()))
+    .catch((error) => console.error(error));
+}
+
+
+//Récupérer les images d'une étape d'une recette à partir du nom de la recette et de l'index de l'étape
+//CHECK IF NECESSARY
+
+
 //Ajout d'une recette
 export function AddRecipeApi (recipe) {
   const url = 'https://bena-cocina-back.herokuapp.com/addRecipe';
@@ -65,7 +78,7 @@ export function AddRecipeApi (recipe) {
           'Content-Type': 'multipart/form-data'
         },
         method: 'POST',
-        body: data._parts
+        body: data
       }).catch( (err) => console.log(err));
       
     

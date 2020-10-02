@@ -47,12 +47,13 @@ class RecipeDetail extends React.Component{
 
   _displayRecipe() {
     var {recipe} = this.state;
-    if (recipe != undefined) {
+    console.log(recipe.main_image);
+    if (recipe.main_image != undefined) {
       return (
         <ScrollView style={styles.scrollview_container}>
           {/* Top Image*/}
           <View style={styles.poster_container}>
-            <Image style={styles.poster} source={recipe.image_path} />
+            <Image style={styles.poster} source={recipe.main_image.image.buffer} />
           </View>
 
           {/* Film title*/}
