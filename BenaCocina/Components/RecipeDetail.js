@@ -45,15 +45,23 @@ class RecipeDetail extends React.Component{
       this.props.dispatch(action);
   }
 
+  _displayMainImage(){
+    if(recipe.main_image != undefined){
+      return(
+        <Image style={styles.poster} source=
+        {{uri:"data:" + recipe.main_image.contentType + ";base64," + recipe.main_image.image}} />
+      )
+    }
+  }
+
   _displayRecipe() {
     var {recipe} = this.state;
-    console.log(recipe.main_image);
-    if (recipe.main_image != undefined) {
+    if (recipe != undefined) {
       return (
         <ScrollView style={styles.scrollview_container}>
           {/* Top Image*/}
           <View style={styles.poster_container}>
-            <Image style={styles.poster} source={recipe.main_image.image.buffer} />
+            {this._displayMainImage()}
           </View>
 
           {/* Film title*/}
@@ -73,9 +81,11 @@ class RecipeDetail extends React.Component{
             <Text style={styles.info_text}>Temps de préparation : {recipe.prep_time}</Text>
             <Text style={styles.info_text}>Temps de cuisson : {recipe.cook_time}</Text>
           </View>
+          {/* INGREDIENTS */}
           <View style={styles.ingredients_container}>
             <Text style={styles.title_text}>Ingrédients</Text>
           </View>
+          {/* STEPS*/}
           <View style={styles.steps_container}>
             <Text style={styles.title_text}>Etapes</Text>
           </View>
